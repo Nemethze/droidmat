@@ -1,6 +1,9 @@
 import os
 from time import sleep
-import uiautomator as u
+import uiautomator2 as u
+import random
+
+d = u.connect()
 
 # airplane mode be-ki kapcsolás !!!TSU installálása és ROOT legyen!!!
 def airplaneMode(time):
@@ -10,9 +13,30 @@ def airplaneMode(time):
 
 # rákeres az adott keywordre
 def search(keyword):
-   search_url = f"https://www.google.com/search?q={keyword}"
-   os.system(f'am start -n com.android.chrome/com.google.android.apps.chrome.Main -a android.intent.action.VIEW -d "{search_url}" --ez create_new_tab true --ez incognito true')
+    d.app_start("com.android.chrome")
 
+    # 3 pöttyre rányom
+    if d(description="More options").exists:
+       d(description="More options").click()
+
+    # megnyit új inkognitó lapot
+    if d(text="New incognito tab").exists:
+       d(text="New incognito tab").click()
+    
+    address_bar = d(className="android.widget.EditText")
+
+    if address_bar.exists:
+        address_bar.click()
+        d.send_keys(keyword)
+     
+def siteVisit():
+    for i in range(random.randint(1,3)):
+        for i in range(random.randint(1,3)):
+            d(scrollable=True).scroll.vert.forward()
+        for i in range(random.randint(1,3)):
+            d(scrollable=True).scroll.vert.backward()
+    d.press("back")
+    
 # próbacseresznye
 airplaneMode(3)
 search("lufi")
