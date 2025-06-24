@@ -1,6 +1,6 @@
 import os
 from time import sleep
-import uiautomator2 as u2
+import uiautomator as u
 
 
 # airplane mode be-ki kapcsolás !!!TSU installálása és ROOT legyen!!!
