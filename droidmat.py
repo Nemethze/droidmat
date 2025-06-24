@@ -8,8 +8,8 @@ def airplaneMode(time):
     os.system("sudo settings put global airplane_mode_on 1")
     os.system("sudo am broadcast -a android.intent.action.AIRPLANE_MODE --ez state true")
     sleep(time)
-    os.system("settings put global airplane_mode_on 0")
-    os.system("am broadcast -a android.intent.action.AIRPLANE_MODE --ez state false")
+    os.system("sudo settings put global airplane_mode_on 0")
+    os.system("sudo am broadcast -a android.intent.action.AIRPLANE_MODE --ez state false")
 
 # rákeres az adott keywordre
 def search(keyword):
