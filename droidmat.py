@@ -30,6 +30,7 @@ def search(keyword):
         d.send_keys(keyword)
      
 def siteVisit():
+    sleep(3)
     for i in range(random.randint(1,3)):
         for i in range(random.randint(1,3)):
             d(scrollable=True).scroll.vert.forward()
@@ -37,6 +38,30 @@ def siteVisit():
             d(scrollable=True).scroll.vert.backward()
     d.press("back")
     
+def openAd(maxAds):
+    for _ in range(maxAds):
+        all_ads = d.xpath('//*[contains(@text, "Shop now")]').all()
+        for ad in all_ads:
+            ad_text = ad.xpath('..').get_text()
+            if not any(b in ad_text for b in blacklist):
+                ad_coords = ad.center()
+                d.long_click(ad_coords[0], ad_coords[1], duration=1.5)
+                d.xpath('//*[@text="Open in new tab"]').click_exists(timeout=2)
+                siteVisit()
+        d.swipe(500, 1500, 500, 500)
+        
+def close():
+    d.press("home")
+    d.shell("am force-stop com.android.chrome")
+
+def readinFile():
+
 # próbacseresznye
-airplaneMode(3)
-search("lufi")
+
+blacklist = []
+
+for i in range(3):
+    airplaneMode(3)
+    search("lufi")
+    openAd(10)
+    close()
