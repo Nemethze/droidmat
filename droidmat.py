@@ -11,7 +11,11 @@ def airplaneMode(time):
     os.system("sudo settings put global airplane_mode_off 1")
     os.system("sudo am broadcast -a android.intent.action.AIRPLANE_MODE --ez state false")
 
-# def search(keyword):
-#     os.
+# rákeres az adott keywordre
+def search(keyword):
+   search_url = f"https://www.google.com/search?q={keyword}"
+   os.system(f'am start -a android.intent.action.VIEW -d "{search_url}"')
+
 
 airplaneMode(3)
+search(lufi)
