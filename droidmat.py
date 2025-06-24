@@ -14,7 +14,7 @@ def airplaneMode(time):
 # rákeres az adott keywordre
 def search(keyword):
    search_url = f"https://www.google.com/search?q={keyword}"
-   os.system(f'am start -a android.intent.action.VIEW -d "{search_url}"')
+   os.system(f'am start -n com.android.chrome/com.google.android.apps.chrome.Main -a android.intent.action.VIEW -d "{search_url}" --ez create_new_tab true --ez incognito true')
 
 
 airplaneMode(3)
