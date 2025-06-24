@@ -13,3 +13,5 @@ def airplaneMode(time):
 
 # def search(keyword):
 #     os.
+
+airplaneMode(3)
